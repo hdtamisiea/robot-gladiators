@@ -111,6 +111,8 @@ var startGame = function () {
 
 // function to end the entire game
 var endGame = function () {
+    window.alert("The game has now ended.  Let's see how you did!");
+
     // if player is still alive, player wins!
     if (playerHealth > 0) {
         window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
@@ -128,6 +130,7 @@ var endGame = function () {
     }
 };
 
+// go to shop between battles function
 var shop = function () {
     // ask player what they'd like to do
     var shopOptionPrompt = window.prompt(
