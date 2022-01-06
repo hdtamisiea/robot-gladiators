@@ -1,4 +1,4 @@
-
+// GAME FUNCTIONS
 
 // function to generate a random numeric value
 var randomNumber = function (min, max) {
@@ -8,8 +8,7 @@ var randomNumber = function (min, max) {
 };
 
 // fight function (now with parameter for enemy's name)
-var fight = function(enemy) {
-    
+var fight = function(enemy) {    
     while (playerInfo.health > 0 && enemy.health > 0) {
         // ask player if they'd like to fight or run
         var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
@@ -50,10 +49,11 @@ var fight = function(enemy) {
             window.alert(enemy.name + ' still has ' + enemy.health + ' health left.');
         }
 
-        // generate random damage alue based on enemy's attack power
+        // generate random damage Value based on enemy's attack power
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
 
         playerInfo.health = Math.max(0, playerInfo.health - damage);
+
         console.log(
             enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
         );
@@ -165,6 +165,11 @@ var shop = function () {
     }
 };
 
+// END GAME FUNCTIONS
+
+// GAME INFORMATION / VARIABLES
+
+// player information
 var playerInfo = {
     name: window.prompt("What is your robot's name?"),
     health: 100,
@@ -174,7 +179,7 @@ var playerInfo = {
       this.health = 100;
       this.money = 10;
       this.attack = 10;
-    }, // comma!
+    }, 
     refillHealth: function() {
         if (this.money >= 7) {
           window.alert("Refilling player's health by 20 for 7 dollars.");
@@ -197,6 +202,7 @@ var playerInfo = {
       }
   };
 
+  // enemy information
 var enemyInfo = [
     {
         name: "Roborto",
@@ -211,6 +217,13 @@ var enemyInfo = [
         attack: randomNumber(10, 14)
     }
 ];
+
+console.log(enemyInfo);
+console.log(enemyInfo[0]);
+console.log(enemyInfo[0].name);
+console.log(enemyInfo[0]['attack']);
+
+// END GAME INFORMATION / VARIABLES
 
 // start first game when page loads
 startGame();
