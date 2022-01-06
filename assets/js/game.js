@@ -1,4 +1,4 @@
-
+// GAME FUNCTIONS
 
 // function to generate a random numeric value
 var randomNumber = function (min, max) {
@@ -41,7 +41,8 @@ var fightOrSkip = function () {
 }
 
 // fight function (now with parameter for enemy's name)
-var fight = function (enemy) {
+
+var fight = function(enemy) {    
 
     while (playerInfo.health > 0 && enemy.health > 0) {
         // ask player if they'd like to fight or skip using fightOrSkip function
@@ -74,11 +75,22 @@ var fight = function (enemy) {
     if (enemy.health <= 0) {
         window.alert(enemy.name + ' has died!');
 
+
         // award player money for winning
         playerInfo.money = playerInfo.money + 20;
 
         // leave while() loop since enemy is dead
         break;
+
+        // generate random damage Value based on enemy's attack power
+        var damage = randomNumber(enemy.attack - 3, enemy.attack);
+
+        playerInfo.health = Math.max(0, playerInfo.health - damage);
+
+        console.log(
+            enemy.name + ' attacked ' + playerInfo.name + '. ' + playerInfo.name + ' now has ' + playerInfo.health + ' health remaining.'
+        );
+
 
     } else {
         window.alert(enemy.name + ' still has ' + enemy.health + ' health left.');
@@ -206,17 +218,24 @@ var getPlayerName = function () {
     return name;
 };
 
+// END GAME FUNCTIONS
+
+// GAME INFORMATION / VARIABLES
+
+// player information
 var playerInfo = {
     name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
-    reset: function () {
-        this.health = 100;
-        this.money = 10;
-        this.attack = 10;
-    }, // comma!
-    refillHealth: function () {
+
+    reset: function() {
+      this.health = 100;
+      this.money = 10;
+      this.attack = 10;
+    }, 
+    refillHealth: function() {
+
         if (this.money >= 7) {
             window.alert("Refilling player's health by 20 for 7 dollars.");
             this.health += 20;
@@ -238,6 +257,7 @@ var playerInfo = {
     }
 };
 
+  // enemy information
 var enemyInfo = [
     {
         name: "Roborto",
@@ -252,6 +272,13 @@ var enemyInfo = [
         attack: randomNumber(10, 14)
     }
 ];
+
+console.log(enemyInfo);
+console.log(enemyInfo[0]);
+console.log(enemyInfo[0].name);
+console.log(enemyInfo[0]['attack']);
+
+// END GAME INFORMATION / VARIABLES
 
 // start first game when page loads
 startGame();
